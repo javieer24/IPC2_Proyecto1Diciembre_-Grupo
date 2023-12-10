@@ -74,7 +74,7 @@ class App():
         frame.config(relief="sunken")
         
         # Frame search
-        frameSearch = tkinter.Frame(self.ventana, width=300,height=50, bg="#294362", highlightthickness=10,highlightbackground="#2a5384", relief="ridge", borderwidth=5)
+        frameSearch = tkinter.Frame(self.ventana, width=300,height=60, bg="#294362", highlightthickness=10,highlightbackground="#2a5384", relief="ridge", borderwidth=5)
         frameSearch.place(x=775, y=10)
         frame.config(relief="sunken")
 
@@ -84,14 +84,53 @@ class App():
         frame.config(relief="sunken")
 
 
+        #-----------------------------------------------------------------------------------------------------------------------
+        #------------------------------------------------------ Labels ---------------------------------------------------------
+        #-----------------------------------------------------------------------------------------------------------------------
+
         # Etiquetas para titulos etc
         titulo = tkinter.Label(self.ventana, text="IPCmusic", bg="#292c37", fg="#4BBD43", font=("Gotham-Black", 24)).place(x=450, y=25)
         
         # Label para Imagen Logo
         img = tkinter.PhotoImage(file="iconos\musica.png")
         logo1 = tkinter.Label(self.ventana, image=img, bg="#292c37").place(x=592, y=10)
+        
+        Label1 = tkinter.Label(frameInfo, text="Canción:")
+        Label1.config(fg="white", bg="#294362", font=("Gotham-Black 18 bold"))
+        Label1.place(x=20,y=50)
 
+        CANCION = "VALOR"
 
+        Label1A = tkinter.Label(frameInfo, text=CANCION)
+        Label1A.config(fg="white", bg="#294362", font=("Gotham-Black 14"))
+        Label1A.place(x=155,y=50)
+
+        Label2 = tkinter.Label(frameInfo, text="Artista:")
+        Label2.config(fg="white", bg="#294362", font=("Gotham-Black 18 bold"))
+        Label2.place(x=20,y=110)
+
+        ARTISTA = "VALOR2"
+
+        Label2A = tkinter.Label(frameInfo, text=ARTISTA)
+        Label2A.config(fg="white", bg="#294362", font=("Gotham-Black 14"))
+        Label2A.place(x=155,y=115)
+
+        Label3 = tkinter.Label(frameInfo, text="Álbum:")
+        Label3.config(fg="white", bg="#294362", font=("Gotham-Black 18 bold"))
+        Label3.place(x=20,y=175)
+
+        ALBUM = "VALOR3"
+
+        Label3A = tkinter.Label(frameInfo, text=ALBUM)
+        Label3A.config(fg="white", bg="#294362", font=("Gotham-Black 14"))
+        Label3A.place(x=155,y=180)
+        
+
+        #-----------------------------------------------------------------------------------------------------------------------
+        #------------------------------------------------------ Buttons ---------------------------------------------------------
+        #-----------------------------------------------------------------------------------------------------------------------
+        def hello():
+            print("Hello")
 
         # Boton salir
         img_cerrar = tkinter.PhotoImage(file="iconos/salir.png")
@@ -104,8 +143,9 @@ class App():
         btn_minimizar.place(x=60, y=10)
 
         # Boton cargar
-        img2 = tkinter.PhotoImage(file="iconos\Load.png")
-        logo2 = tkinter.Label(self.ventana, image=img2, bg="#292c37").place(x=22, y=55)
+        img_load = tkinter.PhotoImage(file="iconos/Load.png")
+        buttonload = tkinter.Button(self.ventana,image=img_load,  bg="#292c37", bd=0, command=search)
+        buttonload.place(x=22, y=55)
 
         # Boton detener
         
@@ -121,16 +161,22 @@ class App():
         
         # Boton repetir
 
+        # Boton buscar
+        search2 = tkinter.StringVar()
+        txtA = tkinter.Entry(frameSearch , textvariable=search2)
+        txtA.place(x=3,y=2)
+        txtA.config(width=43)
 
+        def pn(valor):
+            print(valor)
 
-
-
-
-
+        img13 = tkinter.PhotoImage(file="iconos/search.png")
+        img_Label9 = tkinter.Label(image=img13)
+        button12 = tkinter.Button(self.ventana, image=img13, command = pn(search2.get()), borderwidth=0, bg="white")
+        button12.place(x=740, y=23)
+        button12.config(width=30, height=30)
 
         # Para que sea visible todo lo que realizamos
         self.ventana.mainloop()
     
     
-
-
