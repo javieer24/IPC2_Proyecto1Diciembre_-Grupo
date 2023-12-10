@@ -38,6 +38,9 @@ class App():
 
 # Aqui iran las demas ventas 
 
+
+
+
 # Funciones
 
     def cerrar_aplicacion(self):
@@ -61,12 +64,24 @@ class App():
         #------------------------------------------------------ Frames ---------------------------------------------------------
         #-----------------------------------------------------------------------------------------------------------------------
         # Frame menu
-        frame = tkinter.Frame(self.ventana, width=1050, height=570, bg="#2a5384", highlightthickness=10, highlightbackground="#2a5384", relief="ridge", borderwidth=5,)
+        frame = tkinter.Frame(self.ventana, width=1050, height=570, bg="#2a5384", highlightthickness=10, highlightbackground="#2a5384", relief="ridge", borderwidth=5)
         frame.place(x=25, y=105)
+        frame.config(relief="groove")
         
+        #Framme showinfo
+        frameInfo = tkinter.Frame(frame, width=580,height=300, bg="#294362", highlightthickness=10,highlightbackground="#2a5384", relief="ridge", borderwidth=5)
+        frameInfo.place(x=410, y=150)
+        frame.config(relief="sunken")
+        
+        # Frame search
+        frameSearch = tkinter.Frame(self.ventana, width=300,height=50, bg="#294362", highlightthickness=10,highlightbackground="#2a5384", relief="ridge", borderwidth=5)
+        frameSearch.place(x=775, y=10)
+        frame.config(relief="sunken")
 
-
-
+        # Frame img
+        frameImg = tkinter.Frame(frame, width=400,height=500, bg="#294362", highlightthickness=10,highlightbackground="#2a5384", relief="ridge", borderwidth=5)
+        frameImg.place(x=15, y=30)
+        frame.config(relief="sunken")
 
 
         # Etiquetas para titulos etc
@@ -119,5 +134,3 @@ class App():
     
 
 
-    
-            
