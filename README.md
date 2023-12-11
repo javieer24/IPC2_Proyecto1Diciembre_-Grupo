@@ -60,7 +60,7 @@ La aplicación de escritorio IPCmusic consiste en un reproductor de música el c
   <li><a href="https://pypi.org/project/PySide6/6.5.2/">PySide6 6.5.2 o superiorr</a></li>
   <li><a href="https://pypi.org/project/graphviz/">Graphviz 0.20 o superior</a></li>
   <li><a href="https://pypi.org/project/Pillow/">Pillow 10.1.0</a></li>
-  <li><a href="hhttps://www.pygame.org/wiki/GettingStarted/">Pygame</a></li>
+  <li><a href="[hhttps://www.pygame.org/wiki/GettingStarted/](https://www.pygame.org/download.shtml)">Pygame</a></li>
 </ul>
 
 ## 📟 Instalación
