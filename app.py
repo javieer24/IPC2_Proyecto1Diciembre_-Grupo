@@ -5,6 +5,9 @@ import os   # Para poder usar el comando os.system("comando") y abrir la termina
 from tkinter import messagebox
 import xml.etree.ElementTree as ET
 from tkinter import filedialog
+from PIL import ImageTk, Image
+
+
 
 
 def search():
@@ -147,7 +150,10 @@ class App():
         buttonload = tkinter.Button(self.ventana,image=img_load,  bg="#292c37", bd=0, command=search)
         buttonload.place(x=22, y=55)
 
+
         # Boton detener
+        
+        
         
         # Boton play
 
@@ -180,3 +186,7 @@ class App():
         self.ventana.mainloop()
     
     
+
+
+    
+            
