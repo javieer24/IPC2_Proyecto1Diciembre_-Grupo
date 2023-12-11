@@ -1,5 +1,6 @@
-from objects import *
-from objects import Library, Cantante, Album, Cancion
+from objects.objects import *
+from objects.objects import Album, Cancion
+from objects.library import Library
 from tkinter import filedialog
 import xml.etree.ElementTree as ET
 
@@ -7,6 +8,7 @@ class XMLReader:
     def __init__(self):
         self.ruta = self.loadXML()
         self.contenido = ""
+        
     def loadXML(self):
         try:
             ruta  = filedialog.askopenfilename(title = "Seleccione su XML", filetypes=[("XML File", "*.xml *.XML")])

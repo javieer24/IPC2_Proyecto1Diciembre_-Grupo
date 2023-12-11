@@ -1,6 +1,14 @@
 import os 
 from tkinter import *
-from Nodo import Nodo
+
+class Nodo:
+    def __init__(self, value, id):
+        self.value = value
+        self.id = id
+        self.siguiente = None
+        self.anterior = None
+    def __str__(self) -> str:
+        return str(self.value)
 
 class ListaDoble:
     def __init__(self):
@@ -98,59 +106,8 @@ class Artista:
             string += "\n{}".format(self.listaAlbumes.getById(i))
         return string
     
-class Library:
-    def __init__(self):
-        self.listaArtistas = ListaDoble()
-    def addSong(self, song):
-        new = song
-        nombre = new.nombre
-        album = new.album
-        artista = new.artista
-        imagen = new.imagen
-        contains = self.listaArtistas.contains(artista)
-        if contains != None:
-            artist = self.listaArtistas.getById(contains)
-            contains = artist.listaAlbumes.contains(album)
-            if contains != None:
-                album_ = artist.listaAlbumes.getById(contains)
-                album.listaCanciones.append(new)
-                if contains !=None:
-                    print("Cancion en biblioteca.. Posición: {}".format(contains))
-                else:
-                    album_.listaCanciones.append(new)
-            else:
-                nuevoAlbum = Album(album, imagen)
-                nuevoAlbum.listaCanciones.append(new)
-                artist.listaAlbumes.append(nuevoAlbum)
-        else:
-            nuevoArtista = Artista(artista)
-            nuevoAlbum = Album(album, imagen)
-            nuevoAlbum.listaCanciones.append(new)
-            nuevoArtista.listaAlbumes.append(nuevoAlbum)
-            self.listaArtistas.append(nuevoArtista)
-            
-    def toList(self):
-        lista = ListaDoble()
-        for i in range(self.listaArtistas.length):
-            artista = self.listaArtistas.getById(i)
-            for j in range(artista.listaAlbumes.length):
-                album = artista.listaAlbumes.getById(j)
-                for k in range(album.listaCanciones.length):
-                    cancion = album.listaCanciones.getById(k)
-                    lista.append(cancion)
-        return lista
-    def getArtistas(self):
-        lista = []
-        for i in range(self.listaArtistas.length):
-            artista = self.listaArtistas.getById(i)
-            lista.append(artista.nombre)
-        return lista    
-    def __str__(self):
-        string = "Biblioteca\n\tArtistas:\n"
-        for i in range(self.listaArtistas.length):
-            string += "\n\t{}".format(self.listaArtistas.getById(i))
-        return string
-    
+
+
 class EntryPlaceholder(Entry):
     def __init__(self, placeholder, master = None, color = 'grey'):
         super().__init__(master)
@@ -175,3 +132,65 @@ class EntryPlaceholder(Entry):
     def foc_out(self, *args):
         if not self.get():
             self.put_placeholder()
+            
+class ListaCircular:
+    def __init__(self):
+        self.length = 0
+        self.head = None
+        self.cola = None
+        self.nombre = ""
+    
+    def append(self, value):
+        new = Nodo(value, self.length)
+        if self.head == None:
+            self.head = new
+            self.cola = new
+            self.head.siguiente = self.cola
+            self.cola.siguiente = self.head
+        else:
+            aux = self.cola
+            self.cola = aux.siguiente = new
+            self.cola.anterior = aux
+            self.head.anterior = self.cola
+            self.cola.siguiente = self.head
+        self.length += 1
+        
+    def getById(self, id):
+        if id < 0 or id >= self.length or self.head == None:
+            return None
+        else:
+            actual = self.head
+            while actual.id != id:
+                actual = actual.siguiente
+            return actual.value
+    def contains(self,object):
+        if self.head == None:
+            return None
+        else:
+            actual = self.head
+            while actual.siguiente != None:
+                if actual == object:
+                    break
+                else:
+                    actual = actual.siguiente
+            if actual != None:
+                return actual.siguiente
+            else:
+                return None
+            
+    def __str__(self):
+        string = "["
+        if self.head != None:
+            actual = self.head
+            while True:
+                if actual.siguiente == self.head:
+                    string += "{}]".format(actual)
+                else:
+                    string += "{},".format(actual)
+                actual = actual.siguiente
+                if actual == self.head:
+                    break
+                
+        else:
+            string += "]"
+        return string
