@@ -17,8 +17,7 @@ Luis Daniel Salán Letona - 202000549
 <ul>
   <li>Documentación:
     <ul>
-       <li><a href="https://github.com/javieer24/IPC2_Proyecto1Diciembre_-Grupo/blob/main/Documentaci%C3%B3n/FtoArticuloEnsayo-IPC2-lab.docx" target="_blank">:point_right:Manual Técnico</a></li>
-       <li><a href="https://github.com/javieer24/IPC2_Proyecto1Diciembre_-Grupo/blob/main/Documentaci%C3%B3n/Proyecto1IPC2%20-%20Diciembre.pdf" target="_blank">:point_right:Manual de Usuario</a></li>
+       <li><a href="https://github.com/javieer24/IPC2_Proyecto1Diciembre_-Grupo/tree/main/Documentaci%C3%B3n" target="_blank">:point_right:Documentación</a></li>
     </ul>
   </li>
 </ul>
