@@ -128,3 +128,25 @@ class Library:
             nuevoAlbum.listaCanciones.append(new)
             nuevoArtista.listaAlbumes.append(nuevoAlbum)
             self.listaArtistas.append(nuevoArtista)
+            
+    def toList(self):
+        lista = ListaDoble()
+        for i in range(self.listaArtistas.length):
+            artista = self.listaArtistas.getById(i)
+            for j in range(artista.listaAlbumes.length):
+                album = artista.listaAlbumes.getById(j)
+                for k in range(album.listaCanciones.length):
+                    cancion = album.listaCanciones.getById(k)
+                    lista.append(cancion)
+        return lista
+    def getArtistas(self):
+        lista = []
+        for i in range(self.listaArtistas.length):
+            artista = self.listaArtistas.getById(i)
+            lista.append(artista.nombre)
+        return lista    
+    def __str__(self):
+        string = "Biblioteca\n\tArtistas:\n"
+        for i in range(self.listaArtistas.length):
+            string += "\n\t{}".format(self.listaArtistas.getById(i))
+        return string
