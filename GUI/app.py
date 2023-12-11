@@ -183,7 +183,21 @@ class App(Tk):
         if self.threadPlay != None:
             self.threadPlay.estado = "e"
         
-        
+    def saveList(self):
+        self.playList.nombre = self.entryPlaylist.get()
+        aux = self.playList
+        self.playList = None
+        contenedor = self.listaPlayList.contains(aux.nombre)
+        print("Contenedor: {}".format(contenedor))
+        if contenedor == None:
+            self.listaPlayList.append(aux)
+            valores = []
+            for i in range(self.listaPlayList.length):
+                valores.append(self.listaPlayList.getById(i).nombre)
+                self.cbbListas["values"] = valores
+        else:
+            messagebox.showwarning(title = "Alerta!!!", message = "Ya existe una lista de reproducción con este nombre")
+        self.addPlayList()
     
     def __init__(self):
         Tk.__init__(self)
