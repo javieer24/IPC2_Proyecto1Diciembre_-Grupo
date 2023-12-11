@@ -14,12 +14,6 @@ from PIL import ImageTk
 from PIL import Image
 from method.readxml import XMLReader
 
-
-
-
-
-
-    
      
 
 class App(Tk):
@@ -191,7 +185,7 @@ class App(Tk):
         y_ = self.winfo_screenheight()//2-700//2
         self.resizable(0,0)
         self.geometry("1360x700+{}+{}".format(x_,y_))
-        self.title("NOZC Media Player")
+        self.title("[PROYECTO 1 IPC2 ------- IPCmusic ------- Grupo#]")
         self.library = None
         self.songslist = ListaDoble()
         self.playList = ListaCircular()
