@@ -205,7 +205,7 @@ class App(Tk):
         y_ = self.winfo_screenheight()//2-700//2
         self.resizable(0,0)
         self.geometry("1360x700+{}+{}".format(x_,y_))
-        self.title("NOZC Media Player")
+        self.title("IPCmusic---Proyecto 1----Grupo #")
         self.library = None
         self.songslist = ListaDoble()
         self.playList = ListaCircular()
