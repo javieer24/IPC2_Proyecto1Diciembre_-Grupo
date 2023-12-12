@@ -15,13 +15,6 @@ from PIL import Image
 from method.readxml import XMLReader
 
 
-
-
-
-
-    
-     
-
 class App(Tk):
 
 # Funciones
@@ -34,7 +27,6 @@ class App(Tk):
 
     def minimizar_ventana(self):
         self.ventana.iconify()
-
     
     def addArbol(self):
         columns = ("cancion", "album", "artista")
@@ -121,8 +113,10 @@ class App(Tk):
                 song = self.songslist.getById(i)
                 self.playList.append(song)
                 row = ("{}".format(song.nombre), "{}".format(song.album), "{}".format(song.artista))
-                self.tablePlaylist.insert('', END, values = row, iid = i)
-                self.play()    
+                self.tablePlaylist.insert('', END, values=row, iid=i)
+            # Una vez que la lista de reproducción está llena, reproduces la primera canción
+            self.play()
+
     
     def aNext(self):
         if self.playList.length > 0:
@@ -214,38 +208,48 @@ class App(Tk):
         self.listaPlayList = ListaDoble()
         self.initComponent()
 
+
 # Constructor
     def initComponent(self):
-        self.ventana = Frame(self, background = "#082032")
-        self.ventana.place(x = 0, y = 0, width = 1360, height = 700)
+        # Configuración de la ventana principal
+        self.geometry("1360x700")
+        self.title("NOZC Media Player")
+        self.resizable(0, 0)
 
-        
-        #-----------------------------------------------------------------------------------------------------------------------
-        #------------------------------------------------------ Frames ---------------------------------------------------------
-        #-----------------------------------------------------------------------------------------------------------------------
+        self.ventana = Frame(self, background="#082032")
+        self.ventana.place(x=0, y=0, width=1360, height=700)
+
         # Frame menu
         frame = Frame(self.ventana, width=1310, height=570, bg="#2a5384", highlightthickness=10, highlightbackground="#2a5384", relief="ridge", borderwidth=5)
         frame.place(x=25, y=105)
         frame.config(relief="groove")
-        
-
-        #FOTO
+        # FOTO
         self.foto = Frame(frame)
-        self.foto.place(x = 20, y = 35, width = 300, height = 300)
+        self.foto.place(x=20, y=35, width=300, height=300)
+        #self.foto.place(x = 20, y = 35, width = 300, height = 300)
         #Playlist
         self.addPlayList()
         #Arbol
         self.addArbol()
-        
-        #-----------------------------------------------------------------------------------------------------------------------
+
+        # Labels en el frame 'frame'
+        self.labelCancion = Label(frame, text="Canción: ", fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
+        self.labelCancion.place(x=16, y=431)
+
+        self.labelAlbum = Label(frame, text="Album: ", fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
+        self.labelAlbum.place(x=16, y=469)
+
+        self.labelArtista = Label(frame, text="Artista: ", fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
+        self.labelArtista.place(x=16, y=505)
+
+
         #------------------------------------------------------ Labels ---------------------------------------------------------
-        #-----------------------------------------------------------------------------------------------------------------------
 
         # Etiquetas para titulos etc
         titulo = Label(self.ventana, text="IPCmusic", bg="#082032", fg="#4BBD43", font=("Gotham-Black", 24)).place(x=560, y=25)
         
         # Label para Imagen Logo
-        img = PhotoImage(file="iconos\musica.png")
+        img = PhotoImage(file="iconos\\musica.png")
         logo1 = Label(self.ventana, image=img, bg="#082032").place(x=700, y=10)
         
         Label0 = Label(self.ventana, text="Load XML", bg="#082032", fg="white", font=("Gotham-Black", 6)).place(x=23, y=42)
@@ -261,10 +265,9 @@ class App(Tk):
         Label3 = Label(frame, text="Artista:")
         Label3.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
         Label3.place(x=16,y=505)
- 
-        #-----------------------------------------------------------------------------------------------------------------------
+        
+        
         #------------------------------------------------------ Buttons ---------------------------------------------------------
-        #-----------------------------------------------------------------------------------------------------------------------
 
         # Boton salir
         img_cerrar = PhotoImage(file="iconos/salir.png")
@@ -276,16 +279,28 @@ class App(Tk):
         btn_minimizar = Button(self.ventana, image=img_minimizar, bg="#082032", bd=0, command=self.minimizar_ventana)
         btn_minimizar.place(x=60, y=10)
 
-
         img_load = PhotoImage(file="iconos/load.png")
         btn_load = Button(self.ventana, image=img_load, bg="#082032", bd=0, command = self.cargarXML)
         btn_load.place(x=22, y=55)
         
         
+        # Botones de reproducción, pausa y detención
+        btn_play = Button(frame, text="►", command=self.play)
+        btn_play.place(x=100, y=350)
         
+        btn_pause = Button(frame, text="❚❚", command=self.pause)
+        btn_pause.place(x=200, y=350)
         
+        btn_stop = Button(frame, text="■", command=self.stop)
+        btn_stop.place(x=300, y=350)
         
+        # Botones de avance y retroceso
+        btn_back = Button(frame, text="◀️", command=self.aBack)
+        btn_back.place(x=50, y=350)
         
+        btn_next = Button(frame, text="▶️", command=self.aNext)
+        btn_next.place(x=350, y=350)
+
         #COMBOBOX
         self.cbbArtistas = ttk.Combobox(self.ventana, state = "readonly")
         self.cbbAlbumbes = ttk.Combobox(self.ventana, state = "readonly")
@@ -298,9 +313,4 @@ class App(Tk):
         
         # Para que sea visible todo lo que realizamos
         self.ventana.mainloop()
-    
-    
-
-
-    
-            
+ 
