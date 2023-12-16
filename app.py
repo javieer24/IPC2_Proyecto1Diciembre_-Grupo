@@ -182,6 +182,12 @@ class App(Tk):
     def stop(self):
         if self.threadPlay != None:
             self.threadPlay.estado = "e"
+            
+    def reportes(self):
+        if self.library != None:
+            self.library.report()
+        else:
+            messagebox.showerror(message = "No se ha cargado ninguna biblioteca", title = "Error")
         
     # ------- Metodos para listas de reproduccion --------
 
@@ -299,7 +305,9 @@ class App(Tk):
         btn_load = Button(self.ventana, image=img_load, bg="#082032", bd=0, command = self.cargarXML)
         btn_load.place(x=22, y=55)
 
-
+        #Botón para reportes
+        btn_reportes = Button(self.ventana, text = "Reportes", command = self.reportes)
+        btn_reportes.place(x=40, y=55, width = 85, height = 25)
 
 
         btn_crear_lista = Button(frame, text="Crear Lista", command=self.crear_listaReproduccion)

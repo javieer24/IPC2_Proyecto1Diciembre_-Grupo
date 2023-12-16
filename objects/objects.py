@@ -168,50 +168,47 @@ rankdir = LR;\n"""
 
             string += '\t\t\t}\n'
         string += "\t}\n"
-        #Hacia delante
+        # Hacia delante
         for i in range(self.listaArtistas.length):
             artista = self.listaArtistas.getById(i)
-            if i+1 == self.listaArtistas.length:
-                string += '"{}"->"NoneR{}"[style = dashed];\n'.format(artista.nombre, i+1)
-            else:
-                siguiente = self.listaArtistas.getById(i+1)
-                string += '"{}"->"{}";\n'.format(artista.nombre, siguiente.nombre)
             for j in range(artista.listaAlbumes.length):
                 album = artista.listaAlbumes.getById(j)
-                if j+1 == artista.listaAlbumes.length:
-                    string += '"{}"->"NoneR{}{}"[style = dashed];\n'.format(album.nombre,i,j)
-                else:
-                    siguiente = artista.listaAlbumes.getById(j+1)
-                    string += '"{}"->"{}";\n'.format(album.nombre, siguiente.nombre)
                 for k in range(album.listaCanciones.length):
                     cancion = album.listaCanciones.getById(k)
-                    if k+1 == album.listaCanciones.length:
-                        string += '"{}"->"NoneR{}{}{}"[style = dashed];\n'.format(cancion.nombre,i,j,k)
-                    else:
-                        siguiente = album.listaCanciones.getById(k+1)
-                        string += '"{}"->"{}";\n'.format(cancion.nombre, siguiente.nombre)
-        #Hacia atras
-        for i in range(self.listaArtistas.length-1,-1,-1):
+
+                    # Conexiones hacia adelante
+                    if i + 1 < self.listaArtistas.length:
+                        siguiente_artista = self.listaArtistas.getById(i + 1)
+                        string += '"{}"->"{}";\n'.format(artista.nombre, siguiente_artista.nombre)
+
+                    if j + 1 < artista.listaAlbumes.length:
+                        siguiente_album = artista.listaAlbumes.getById(j + 1)
+                        string += '"{}"->"{}";\n'.format(album.nombre, siguiente_album.nombre)
+
+                    if k + 1 < album.listaCanciones.length:
+                        siguiente_cancion = album.listaCanciones.getById(k + 1)
+                        string += '"{}"->"{}";\n'.format(cancion.nombre, siguiente_cancion.nombre)
+
+        # Hacia atras
+        for i in range(self.listaArtistas.length - 1, 0, -1):
             artista = self.listaArtistas.getById(i)
-            if i-1 == -1:
-                string += '"{}"->"NoneL{}"[style = dashed];\n'.format(artista.nombre,i)
-            else:
-                anterior = self.listaArtistas.getById(i-1)
-                string += '"{}"->"{}";\n'.format(artista.nombre, anterior.nombre)
-            for j in range(artista.listaAlbumes.length-1,-1,-1):
+            for j in range(artista.listaAlbumes.length - 1, 0, -1):
                 album = artista.listaAlbumes.getById(j)
-                if j-1 == -1:
-                    string += '"{}"->"NoneL{}{}"[style = dashed];\n'.format(album.nombre,j,i)
-                else:
-                    anterior = artista.listaAlbumes.getById(j-1)
-                    string += '"{}"->"{};"\n'.format(album.nombre, anterior.nombre)
-                for k in range(album.listaCanciones.length-1,-1,-1):
+                for k in range(album.listaCanciones.length - 1, 0, -1):
                     cancion = album.listaCanciones.getById(k)
-                    if k-1 == -1:
-                        string += '"{}"->"NoneL{}{}{}"[style = dashed];\n'.format(cancion.nombre,k,j,i)
-                    else:
-                        anterior = album.listaCanciones.getById(k-1)
-                        string += '"{}"->"{}";\n'.format(cancion.nombre, anterior.nombre)
+
+                    # Conexiones hacia atras
+                    if i - 1 >= 0:
+                        anterior_artista = self.listaArtistas.getById(i - 1)
+                        string += '"{}"->"{}";\n'.format(artista.nombre, anterior_artista.nombre)
+
+                    if j - 1 >= 0:
+                        anterior_album = artista.listaAlbumes.getById(j - 1)
+                        string += '"{}"->"{}";\n'.format(album.nombre, anterior_album.nombre)
+
+                    if k - 1 >= 0:
+                        anterior_cancion = album.listaCanciones.getById(k - 1)
+                        string += '"{}"->"{}";\n'.format(cancion.nombre, anterior_cancion.nombre)
         string += "\n}"
         file = open("library.dot", "w")
         file.write(string)
