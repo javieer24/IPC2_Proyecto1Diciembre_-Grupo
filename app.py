@@ -274,17 +274,17 @@ class App(Tk):
         
         Label0 = Label(self.ventana, text="Load XML", bg="#082032", fg="white", font=("Gotham-Black", 6)).place(x=23, y=42)
         
-        Label1 = Label(frame, text="Canción:")
-        Label1.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
-        Label1.place(x=16,y=431)
+        labelCancion = Label(frame, text="Canción:")
+        labelCancion.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
+        labelCancion.place(x=16,y=431)
         
-        Label2 = Label(frame, text="Album:")
-        Label2.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
-        Label2.place(x=16,y=469)
+        labelAlbum = Label(frame, text="Album:")
+        labelAlbum.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
+        labelAlbum.place(x=16,y=469)
         
-        Label3 = Label(frame, text="Artista:")
-        Label3.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
-        Label3.place(x=16,y=505)
+        labelArtista = Label(frame, text="Artista:")
+        labelArtista.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
+        labelArtista.place(x=16,y=505)
  
         #-----------------------------------------------------------------------------------------------------------------------
         #------------------------------------------------------ Buttons ---------------------------------------------------------
