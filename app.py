@@ -322,6 +322,10 @@ class App(Tk):
         btn_reproducir = Button(frame, text="Reproducir Lista", command=lambda: self.reproducir_Lista())
         btn_reproducir.place(x=1090, y=450)
         
+        img_play = PhotoImage(file="iconos/play.png")
+        img_play = Button(frame, text="play", bg="#fff", bd=0, command = self.play)
+        img_play.place(x=475, y=400)
+        
         
         
         

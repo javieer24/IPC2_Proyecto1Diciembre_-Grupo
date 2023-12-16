@@ -7,7 +7,7 @@ from objects.objects import *
 from objects.objects import ListaDoble, ListaCircular
 from objects import *
 from thread.thread import *
-from tkinter import Image, Tk, Button, Label, Label, ttk, filedialog, messagebox
+from tkinter import Image, Tk, Button, Label, Label, ttk, filedialog, messagebox, simpledialog
 import xml.etree.ElementTree as ET
 import tkinter.font as TFont
 from PIL import ImageTk
@@ -34,6 +34,7 @@ class App(Tk):
 
     def minimizar_ventana(self):
         self.ventana.iconify()
+
 
     
     def addArbol(self):
@@ -108,6 +109,7 @@ class App(Tk):
             song = self.songslist.getById(int(self.tabla.focus()))
             self.playList.append(song)
             row = ("{}".format(song.nombre), "{}".format(song.album), "{}".format(song.artista))
+            
             self.tablePlaylist.insert('', END, values = row, iid = self.playList.length-1)
     
     def play(self):
@@ -182,22 +184,84 @@ class App(Tk):
     def stop(self):
         if self.threadPlay != None:
             self.threadPlay.estado = "e"
-        
-    def saveList(self):
-        self.playList.nombre = self.entryPlaylist.get()
-        aux = self.playList
-        self.playList = None
-        contenedor = self.listaPlayList.contains(aux.nombre)
-        print("Contenedor: {}".format(contenedor))
-        if contenedor == None:
-            self.listaPlayList.append(aux)
-            valores = []
-            for i in range(self.listaPlayList.length):
-                valores.append(self.listaPlayList.getById(i).nombre)
-                self.cbbListas["values"] = valores
+            
+    def reportes(self):
+        if self.library != None:
+            self.library.report()
         else:
-            messagebox.showwarning(title = "Alerta!!!", message = "Ya existe una lista de reproducción con este nombre")
-        self.addPlayList()
+            messagebox.showerror(message = "No se ha cargado ninguna biblioteca", title = "Error")
+            
+        
+    def MisListas(self):
+            # Ruta del archivo XML fijo
+            archivo_xml = "MisListas\MiLista.xml"
+
+            # Parsear el archivo XML
+            tree = ET.parse(archivo_xml)
+            root = tree.getroot()
+
+
+            # Iterar sobre las listas de reproducción y canciones
+            for lista in root.findall(".//Lista"):
+                lista_nombre = lista.get("nombre")
+
+                for cancion_elem in lista.findall(".//cancion"):
+                    cancion_nombre = cancion_elem.get("nombre")
+                    artista = cancion_elem.find("artista").text
+                    album = cancion_elem.find("album").text
+                    veces_reproducida = cancion_elem.find("vecesReproducida").text
+                    imagen = cancion_elem.find("imagen").text
+                    ruta = cancion_elem.find("ruta").text
+
+                    # Agregar la canción a la tabla de canciones ------- Esto no me sirve jeje
+                    #row = (cancion_nombre, album, artista)
+                    #self.tabla.insert("", END, values=row)
+
+                    # Agregar la canción a la lista de reproducción por defecto
+                    row_playlist = (cancion_nombre, album, artista)
+                    self.tablePlaylist.insert('', END, values = row_playlist)
+
+             
+            
+            
+            
+            
+    
+        
+    # ------- Metodos para listas de reproduccion --------
+
+    def crear_listaReproduccion(self):
+        nombre_lista = simpledialog.askstring("Crear una lista de Reproducción", "Nombre de la Lista: " )
+        if nombre_lista:
+            if not self.listaPlayList.buscar(nombre_lista):
+                nueva_Lista = ListaCircular()
+                nueva_Lista.nombre = nombre_lista
+                self.listaPlayList.append(nueva_Lista)
+                self.cbbListas["values"] = self.listaPlayList.get_nombres()
+                self.cbbListas.current(len(self.listaPlayList) -1)
+            else:
+                messagebox.showwarning("Error, ese nombre ya existe!")
+    
+
+    def modo_reproduccion(self, modo):
+        if modo == "Normal":
+            self.modo_reproduccion_actual = "Normal"
+        elif modo == "Aleatorio":
+            self.modo_reproduccion_actual = "Aleatorio"
+
+    
+    def reproducir_Lista(self):
+        if self.cbbListas.get():
+            nombre_lista = self.cbbListas.get()
+            current_lista = self.listaPlayList.buscar(nombre_lista)
+
+            if current_lista:
+                if self.modo_reproduccion == "Normal":
+                    self.actualPlaylist = current_lista.head
+                elif self.modo_reproduccion == "Aleatorio":
+                    pass
+
+                self.reproducir(self.actualPlaylist.value)        
     
     def __init__(self):
         Tk.__init__(self)
@@ -205,7 +269,7 @@ class App(Tk):
         y_ = self.winfo_screenheight()//2-700//2
         self.resizable(0,0)
         self.geometry("1360x700+{}+{}".format(x_,y_))
-        self.title("IPCmusic---Proyecto 1----Grupo #")
+        self.title("NOZC Media Player")
         self.library = None
         self.songslist = ListaDoble()
         self.playList = ListaCircular()
@@ -219,7 +283,6 @@ class App(Tk):
         self.ventana = Frame(self, background = "#082032")
         self.ventana.place(x = 0, y = 0, width = 1360, height = 700)
 
-        
         #-----------------------------------------------------------------------------------------------------------------------
         #------------------------------------------------------ Frames ---------------------------------------------------------
         #-----------------------------------------------------------------------------------------------------------------------
@@ -234,6 +297,9 @@ class App(Tk):
         self.foto.place(x = 20, y = 35, width = 300, height = 300)
         #Playlist
         self.addPlayList()
+        #Aca agrego las canciones del xml de listas 
+        self.MisListas()
+
         #Arbol
         self.addArbol()
         
@@ -250,17 +316,17 @@ class App(Tk):
         
         Label0 = Label(self.ventana, text="Load XML", bg="#082032", fg="white", font=("Gotham-Black", 6)).place(x=23, y=42)
         
-        Label1 = Label(frame, text="Canción:")
-        Label1.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
-        Label1.place(x=16,y=431)
+        labelCancion = Label(frame, text="Canción:")
+        labelCancion.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
+        labelCancion.place(x=16,y=431)
         
-        Label2 = Label(frame, text="Album:")
-        Label2.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
-        Label2.place(x=16,y=469)
+        labelAlbum = Label(frame, text="Album:")
+        labelAlbum.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
+        labelAlbum.place(x=16,y=469)
         
-        Label3 = Label(frame, text="Artista:")
-        Label3.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
-        Label3.place(x=16,y=505)
+        labelArtista = Label(frame, text="Artista:")
+        labelArtista.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
+        labelArtista.place(x=16,y=505)
  
         #-----------------------------------------------------------------------------------------------------------------------
         #------------------------------------------------------ Buttons ---------------------------------------------------------
@@ -280,6 +346,27 @@ class App(Tk):
         img_load = PhotoImage(file="iconos/load.png")
         btn_load = Button(self.ventana, image=img_load, bg="#082032", bd=0, command = self.cargarXML)
         btn_load.place(x=22, y=55)
+
+        #Botón para reportes
+        btn_reportes = Button(self.ventana, text = "Reportes", command = self.reportes)
+        btn_reportes.place(x=40, y=55, width = 85, height = 25)
+
+
+        btn_crear_lista = Button(frame, text="Crear Lista", command=self.crear_listaReproduccion)
+        btn_crear_lista.place(x=990, y=450)
+
+        btn_modoNormal = Button(frame, text="Normal", command=lambda: self.modo_reproduccion("Normal"))
+        btn_modoNormal.place(x=400, y=350)
+
+        btn_modoAleatorio = Button(frame, text="Aleatorio", command=lambda: self.modo_reproduccion("Aleatorio"))
+        btn_modoAleatorio.place(x=475, y=350)
+
+        btn_reproducir = Button(frame, text="Reproducir Lista", command=lambda: self.reproducir_Lista())
+        btn_reproducir.place(x=1090, y=450)
+        
+        img_play = PhotoImage(file="iconos/play.png")
+        img_play = Button(frame, text="play", bg="#fff", bd=0, command = self.play)
+        img_play.place(x=475, y=400)
         
         
         
@@ -298,9 +385,3 @@ class App(Tk):
         
         # Para que sea visible todo lo que realizamos
         self.ventana.mainloop()
-    
-    
-
-
-    
-            
