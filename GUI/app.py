@@ -329,6 +329,22 @@ class App(Tk):
         else:
             messagebox.showerror(message = "No se ha cargado ninguna biblioteca", title = "Error")
             
+    def saveList(self):
+        self.playList.nombre = self.entryPlaylist.get()
+        aux = self.playList
+        self.playList = None
+        contenedor = self.listaPlayList.contains(aux.nombre)
+        print("Contenedor: {}".format(contenedor))
+        if contenedor == None:
+            self.listaPlayList.append(aux)
+            valores = []
+            for i in range(self.listaPlayList.length):
+                valores.append(self.listaPlayList.getById(i).nombre)
+                self.cbbListas["values"] = valores
+        else:
+            messagebox.showwarning(title = "Alerta!!!", message = "Ya existe una lista de reproducción con este nombre")
+        self.addPlayList()            
+
     def MisListas(self, nombre_lista=None):
         if nombre_lista is None:
             # Puedes elegir mostrar una lista predeterminada o simplemente no hacer nada
@@ -476,17 +492,17 @@ class App(Tk):
         
         Label0 = Label(self.ventana, text="Load XML", bg="#082032", fg="white", font=("Gotham-Black", 6)).place(x=23, y=42)
         
-        labelCancion = Label(frame, text="Canción:")
-        labelCancion.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
-        labelCancion.place(x=16,y=431)
-        
-        labelAlbum = Label(frame, text="Album:")
-        labelAlbum.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
-        labelAlbum.place(x=16,y=469)
-        
-        labelArtista = Label(frame, text="Artista:")
-        labelArtista.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
-        labelArtista.place(x=16,y=505)
+        self.labelCancion = Label(frame, text="Canción:")
+        self.labelCancion.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
+        self.labelCancion.place(x=16,y=431)
+
+        self.labelAlbum = Label(frame, text="Album:")
+        self.labelAlbum.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
+        self.labelAlbum.place(x=16,y=469)
+
+        self.labelArtista = Label(frame, text="Artista:")
+        self.labelArtista.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
+        self.labelArtista.place(x=16,y=505)
  
  
         #-----------------------------------------------------------------------------------------------------------------------
@@ -510,45 +526,64 @@ class App(Tk):
 
         #Botón para reportes
         btn_reportes = Button(self.ventana, text = "Reportes", command = self.reportes)
-        btn_reportes.place(x=40, y=55, width = 85, height = 25)
+        btn_reportes.place(x=70, y=70, width = 85, height = 25)
 
 
         btn_crear_lista = Button(frame, text="Crear Lista", command=self.crear_listaReproduccion)
-        btn_crear_lista.place(x=990, y=450)
+        btn_crear_lista.place(x=840, y=218)
         
         btn_crear_lista = Button(frame, text="Agregar Lsita", command=self.agregar_cancion_a_lista)
-        btn_crear_lista.place(x=890, y=450)
+        btn_crear_lista.place(x=834, y=276)
         
         btn_reproducir = Button(frame, text="Reproducir", command=lambda: self.reproducirSeleccionada())
-        btn_reproducir.place(x=790, y=450)
+        btn_reproducir.place(x=1000, y=450)
 
         btn_modoNormal = Button(frame, text="Normal", command=lambda: self.modo_reproduccion("Normal"))
-        btn_modoNormal.place(x=400, y=350)
+        btn_modoNormal.place(x=97, y=340)
 
         btn_modoAleatorio = Button(frame, text="Aleatorio", command=lambda: self.modo_reproduccion("Aleatorio"))
-        btn_modoAleatorio.place(x=475, y=350)
+        btn_modoAleatorio.place(x=215, y=340)
 
         btn_reproducir = Button(frame, text="Reproducir Lista", command=lambda: self.reproducir_Lista())
-        btn_reproducir.place(x=1090, y=450)
+        btn_reproducir.place(x=1085, y=450)
         
         img_play = PhotoImage(file="iconos//play.png")
-        img_play = Button(frame, text="plays", bg="#fff", bd=0, command = self.play)
-        img_play.place(x=475, y=400)
+        img_play = Button(frame, text="Play", bg="#fff", bd=0, command = self.play)
+        img_play.place(x=165, y=340)
         
         # EL BOTON QUE FUNCA CON DOBLE FUNCION PLAY Y PAUSA
         img_play_pause = PhotoImage(file="iconos//play.png")  # NO SE COMO PONER UN ICONO DINAMICO DE PLAY Y PAUSA
         btn_play_pause = Button(frame, image=img_play_pause, bg="#fff", bd=0, command=self.togglePlayPause)
-        btn_play_pause.place(x=690, y=450)  
+        btn_play_pause.place(x=160, y=370)  
         
         #PARA EL BOTON SIGUIENTE
         img_next = PhotoImage(file="iconos//Next.png")
         btn_next = Button(frame, image=img_next, bg="#fff", bd=0, command=self.aNext)
-        btn_next.place(x=575, y=400)
+        btn_next.place(x=215, y=370)
 
         #PARA EL BOTON ATRAS
         img_previous = PhotoImage(file="iconos//Previous.png")
         btn_previous = Button(frame, image=img_previous, bg="#fff", bd=0, command=self.aBack)
-        btn_previous.place(x=375, y=450)
+        btn_previous.place(x=115, y=370)
+
+
+        btnnext = Button(frame, text = "Next", bg="#fff", bd=0, command = self.aNext)
+        btnnext.place(x = 215, y = 415)
+
+        btnback = Button(frame, text = "Back", bg="#fff", bd=0, command = self.aBack)
+        btnback.place(x = 115, y = 415)
+        
+        #Añade canciones deseadas a la playlist
+        btnAdd = Button(frame, text = "Add To List", bg="#fff", bd=0, command = self.addToList)
+        btnAdd.place(x = 840, y = 247)
+        
+        #Boton para guardar lista y poder usar el combobox de Listas de Reproducción 
+        btnSave = Button(frame, text = "Save List", bg="#fff", bd=0, command = self.saveList)
+        btnSave.place(x = 846, y = 160)
+        
+        #Boton para limpiar la lista de reproducción
+        btnDelete = Button(frame, text = "Clear List", bg="#fff", bd=0, command= self.addPlayList)
+        btnDelete.place(x = 845, y = 189)
 
 
         
