@@ -191,7 +191,22 @@ class App(Tk):
         else:
             messagebox.showerror(message = "No se ha cargado ninguna biblioteca", title = "Error")
             
-        
+    def saveList(self):
+        self.playList.nombre = self.entryPlaylist.get()
+        aux = self.playList
+        self.playList = None
+        contenedor = self.listaPlayList.contains(aux.nombre)
+        print("Contenedor: {}".format(contenedor))
+        if contenedor == None:
+            self.listaPlayList.append(aux)
+            valores = []
+            for i in range(self.listaPlayList.length):
+                valores.append(self.listaPlayList.getById(i).nombre)
+                self.cbbListas["values"] = valores
+        else:
+            messagebox.showwarning(title = "Alerta!!!", message = "Ya existe una lista de reproducción con este nombre")
+        self.addPlayList()
+
     def MisListas(self):
             # Ruta del archivo XML fijo
             archivo_xml = "MisListas\MiLista.xml"
@@ -358,21 +373,38 @@ class App(Tk):
         btn_crear_lista.place(x=990, y=450)
 
         btn_modoNormal = Button(frame, text="Normal", command=lambda: self.modo_reproduccion("Normal"))
-        btn_modoNormal.place(x=400, y=350)
+        btn_modoNormal.place(x=27, y=350)
 
         btn_modoAleatorio = Button(frame, text="Aleatorio", command=lambda: self.modo_reproduccion("Aleatorio"))
-        btn_modoAleatorio.place(x=475, y=350)
+        btn_modoAleatorio.place(x=245, y=350)
 
         btn_reproducir = Button(frame, text="Reproducir Lista", command=lambda: self.reproducir_Lista())
         btn_reproducir.place(x=1090, y=450)
         
         img_play = PhotoImage(file="iconos/play.png")
-        img_play = Button(frame, text="play", bg="#fff", bd=0, command = self.play)
-        img_play.place(x=475, y=400)
+        img_play = Button(frame, text="Play", bg="#fff", bd=0, command = self.play)
+        img_play.place(x=165, y=350)
+
+        btnPause = Button(frame, text = "Stop",  bg="#fff", bd=0, command = self.pause)
+        btnPause.place(x = 125, y = 350)
+
+        btnnext = Button(frame, text = "Next", bg="#fff", bd=0, command = self.aNext)
+        btnnext.place(x = 205, y = 350)
+
+        btnback = Button(frame, text = "Back", bg="#fff", bd=0, command = self.aBack)
+        btnback.place(x = 85, y = 350)
         
+        #Añade canciones deseadas a la playlist
+        btnAdd = Button(frame, text = "Add To List", bg="#fff", bd=0, command = self.addToList)
+        btnAdd.place(x = 840, y = 160)
         
+        #Boton para guardar lista y poder usar el combobox de Listas de Reproducción 
+        btnSave = Button(frame, text = "Save List", bg="#fff", bd=0, command = self.saveList)
+        btnSave.place(x = 846, y = 189)
         
-        
+        #Boton para limpiar la lista de reproducción
+        btnDelete = Button(frame, text = "Clear List", bg="#fff", bd=0, command= self.addPlayList)
+        btnDelete.place(x = 845, y = 218)
         
         
         #COMBOBOX
