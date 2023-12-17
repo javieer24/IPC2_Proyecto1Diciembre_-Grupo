@@ -309,24 +309,25 @@ class App(Tk):
 
         # Etiquetas para titulos etc
         titulo = Label(self.ventana, text="IPCmusic", bg="#082032", fg="#4BBD43", font=("Gotham-Black", 24)).place(x=560, y=25)
-        
+
         # Label para Imagen Logo
         img = PhotoImage(file="iconos\musica.png")
         logo1 = Label(self.ventana, image=img, bg="#082032").place(x=700, y=10)
-        
+
         Label0 = Label(self.ventana, text="Load XML", bg="#082032", fg="white", font=("Gotham-Black", 6)).place(x=23, y=42)
-        
-        labelCancion = Label(frame, text="Canción:")
-        labelCancion.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
-        labelCancion.place(x=16,y=431)
-        
-        labelAlbum = Label(frame, text="Album:")
-        labelAlbum.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
-        labelAlbum.place(x=16,y=469)
-        
-        labelArtista = Label(frame, text="Artista:")
-        labelArtista.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
-        labelArtista.place(x=16,y=505)
+
+        self.labelCancion = Label(frame, text="Canción:")
+        self.labelCancion.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
+        self.labelCancion.place(x=16,y=431)
+
+        self.labelAlbum = Label(frame, text="Album:")
+        self.labelAlbum.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
+        self.labelAlbum.place(x=16,y=469)
+
+        self.labelArtista = Label(frame, text="Artista:")
+        self.labelArtista.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
+        self.labelArtista.place(x=16,y=505)
+
  
  
         #-----------------------------------------------------------------------------------------------------------------------
@@ -350,7 +351,7 @@ class App(Tk):
 
         #Botón para reportes
         btn_reportes = Button(self.ventana, text = "Reportes", command = self.reportes)
-        btn_reportes.place(x=40, y=55, width = 85, height = 25)
+        btn_reportes.place(x=100, y=55, width = 85, height = 25)
 
 
         btn_crear_lista = Button(frame, text="Crear Lista", command=self.crear_listaReproduccion)
