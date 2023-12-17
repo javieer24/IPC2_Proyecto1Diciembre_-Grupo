@@ -45,19 +45,17 @@ class ListaDoble:
                     actual = actual.siguiente
                 return actual.value
     def contains(self, nombre):
-        if self.cabeza == None:
-            return None
-        else:
-            actual = self.cabeza
-            while actual != None:
-                if actual.value.nombre == nombre:
-                    break
-                else:
-                    actual = actual.siguiente
-            if actual != None:
-                return actual.id
-            else:
+            if self.head == None:
                 return None
+            actual = self.head
+            inicio = True
+            while inicio or actual != self.head:
+                inicio = False
+                if actual.value.nombre == nombre:
+                    return actual.id
+                actual = actual.siguiente
+            return None
+        
     def __str__(self):
         if self.cabeza == None:
             return "[]"
@@ -71,6 +69,12 @@ class ListaDoble:
                     string += "{},".format(actual)
                 actual = actual.siguiente
             return string
+    
+    def __iter__(self):
+        actual = self.cabeza
+        while actual:
+            yield actual.value
+            actual = actual.siguiente
 class Cancion:
     def __init__(self, nombre, album, artista, ruta, imagen):
         self.nombre = nombre
@@ -78,8 +82,14 @@ class Cancion:
         self.artista = artista
         self.ruta = ruta
         self.imagen = imagen
+        self.vecesReproducida = 0  # Añade el contador de reproducciones
+
+    def incrementar_reproducciones(self):
+        self.vecesReproducida += 1
+
     def __str__(self):
-        return "Canción: {}".format(self.nombre)
+        return f"Canción: {self.nombre}, Reproducciones: {self.vecesReproducida}"
+
 class Album:
     def __init__(self, nombre, imagen):
         self.nombre = nombre

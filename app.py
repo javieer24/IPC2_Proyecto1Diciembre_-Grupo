@@ -13,15 +13,7 @@ import tkinter.font as TFont
 from PIL import ImageTk
 from PIL import Image
 from method.readxml import XMLReader
-
-
-
-
-
-
-    
-     
-
+import random
 class App(Tk):
 
 # Funciones
@@ -200,6 +192,8 @@ class App(Tk):
                 self.listaPlayList.append(nueva_Lista)
                 self.cbbListas["values"] = self.listaPlayList.get_nombres()
                 self.cbbListas.current(len(self.listaPlayList) -1)
+                print("Contenido actual de self.listaPlayList:", self.listaPlayList)
+
             else:
                 messagebox.showwarning("Error, ese nombre ya existe!")
     
@@ -214,15 +208,23 @@ class App(Tk):
     def reproducir_Lista(self):
         if self.cbbListas.get():
             nombre_lista = self.cbbListas.get()
-            current_lista = self.listaPlayList.buscar(nombre_lista)
+            id_lista = self.listaPlayList.contains(nombre_lista)
 
-            if current_lista:
-                if self.modo_reproduccion == "Normal":
-                    self.actualPlaylist = current_lista.head
-                elif self.modo_reproduccion == "Aleatorio":
-                    pass
+            if id_lista is not None:
+                current_lista = self.listaPlayList.getById(id_lista)
+                if current_lista:
+                    if self.modo_reproduccion_actual == "Normal":
+                        self.actualPlaylist = current_lista.head
+                    elif self.modo_reproduccion_actual == "Aleatorio":
+                        indice_aleatorio = random.randint(0, current_lista.length - 1)
+                        self.actualPlaylist = current_lista.getById(indice_aleatorio)
 
-                self.reproducir(self.actualPlaylist.value)        
+                    self.reproducir(self.actualPlaylist.value)
+                else:
+                    print("La lista está vacía.")
+            else:
+                print("Lista no encontrada.")
+
     
     def __init__(self):
         Tk.__init__(self)
@@ -230,7 +232,7 @@ class App(Tk):
         y_ = self.winfo_screenheight()//2-700//2
         self.resizable(0,0)
         self.geometry("1360x700+{}+{}".format(x_,y_))
-        self.title("IPCmusic---Grupo#---")
+        self.title("NOZC Media Player")
         self.library = None
         self.songslist = ListaDoble()
         self.playList = ListaCircular()
@@ -244,9 +246,7 @@ class App(Tk):
         self.ventana = Frame(self, background = "#082032")
         self.ventana.place(x = 0, y = 0, width = 1360, height = 700)
 
-        #-----------------------------------------------------------------------------------------------------------------------
         #------------------------------------------------------ Frames ---------------------------------------------------------
-        #-----------------------------------------------------------------------------------------------------------------------
         # Frame menu
         frame = Frame(self.ventana, width=1310, height=570, bg="#2a5384", highlightthickness=10, highlightbackground="#2a5384", relief="ridge", borderwidth=5)
         frame.place(x=25, y=105)
@@ -261,10 +261,7 @@ class App(Tk):
         #Arbol
         self.addArbol()
         
-        #-----------------------------------------------------------------------------------------------------------------------
-        #------------------------------------------------------ Labels ---------------------------------------------------------
-        #-----------------------------------------------------------------------------------------------------------------------
-
+       #------------------------------------------------------ Labels ---------------------------------------------------------
         # Etiquetas para titulos etc
         titulo = Label(self.ventana, text="IPCmusic", bg="#082032", fg="#4BBD43", font=("Gotham-Black", 24)).place(x=560, y=25)
         
@@ -286,10 +283,7 @@ class App(Tk):
         labelArtista.config(fg="white", bg="#2a5384", font=("Gotham-Black 14 bold"))
         labelArtista.place(x=16,y=505)
  
-        #-----------------------------------------------------------------------------------------------------------------------
-        #------------------------------------------------------ Buttons ---------------------------------------------------------
-        #-----------------------------------------------------------------------------------------------------------------------
-
+  #------------------------------------------------------ Buttons ---------------------------------------------------------
         # Boton salir
         img_cerrar = PhotoImage(file="iconos/salir.png")
         btn_cerrar = Button(self.ventana, image=img_cerrar, bg="#082032", bd=0, command=self.cerrar_aplicacion)
@@ -325,11 +319,6 @@ class App(Tk):
         img_play = PhotoImage(file="iconos/play.png")
         img_play = Button(frame, text="play", bg="#fff", bd=0, command = self.play)
         img_play.place(x=475, y=400)
-        
-        
-        
-        
-        
         
         #COMBOBOX
         self.cbbArtistas = ttk.Combobox(self.ventana, state = "readonly")

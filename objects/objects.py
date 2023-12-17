@@ -13,19 +13,21 @@ class ListaDoble:
         self.length = 0
         self.cabeza = None
         self.cola = None
+
     def append(self, value):
         nuevo = Nodo(value, self.length)
-        if self.cabeza == None:
+        if self.cabeza is None:
             self.cabeza = nuevo
             self.cola = self.cabeza
         else:
             actual = self.cola
             nuevo.anterior = actual
+            actual.siguiente = nuevo
             self.cola = nuevo
-            actual.siguiente = self.cola
         self.length += 1
+
     def getById(self, id):
-        if self.cabeza == None:
+        if self.cabeza is None:
             return "No hay cabeza"
         else:
             if id < 0 or id >= self.length:
@@ -35,33 +37,47 @@ class ListaDoble:
                 while actual.id != id:
                     actual = actual.siguiente
                 return actual.value
+
     def contains(self, nombre):
-        if self.cabeza == None:
-            return None
-        else:
-            actual = self.cabeza
-            while actual != None:
-                if actual.value.nombre == nombre:
-                    break
-                else:
-                    actual = actual.siguiente
-            if actual != None:
+        actual = self.cabeza
+        while actual is not None:
+            if actual.value.nombre == nombre:
                 return actual.id
-            else:
-                return None
+            actual = actual.siguiente
+        return None
+
     def __str__(self):
-        if self.cabeza == None:
+        if self.cabeza is None:
             return "[]"
         else:
             string = "["
             actual = self.cabeza
-            while actual != None:
-                if actual.siguiente == None:
-                    string += "{}]".format(actual)
-                else:
-                    string += "{},".format(actual)
+            while actual is not None:
+                string += "{},".format(actual) if actual.siguiente else "{}]".format(actual)
                 actual = actual.siguiente
             return string
+
+    def get_nombres(self):
+        nombres = []
+        actual = self.cabeza
+        while actual is not None:
+            nombres.append(actual.value.nombre)  # Asumiendo que cada nodo tiene un atributo 'nombre'
+            actual = actual.siguiente
+        return nombres
+    
+    def __init__(self):
+            self.length = 0
+            self.cabeza = None
+            self.cola = None    
+    
+    def __len__(self):
+        return self.length
+    
+    def __iter__(self):
+        actual = self.cabeza
+        while actual:
+            yield actual.value
+            actual = actual.siguiente
 class Cancion:
     def __init__(self, nombre, album, artista, ruta, imagen):
         self.nombre = nombre
@@ -69,8 +85,14 @@ class Cancion:
         self.artista = artista
         self.ruta = ruta
         self.imagen = imagen
+        self.vecesReproducida = 0  # Añade el contador de reproducciones
+
+    def incrementar_reproducciones(self):
+        self.vecesReproducida += 1
+
     def __str__(self):
-        return "Canción: {}".format(self.nombre)
+        return f"Canción: {self.nombre}, Reproducciones: {self.vecesReproducida}"
+
 class Album:
     def __init__(self, nombre, imagen):
         self.nombre = nombre
@@ -279,20 +301,18 @@ class ListaCircular:
                     break
                 actual = actual.siguiente
             return actual.value
-    def contains(self, object):
-        if self.head == None:
-            return None
-        else:
-            actual = self.head
-            while actual.siguiente != self.head:
-                if actual == object:
-                    break
-                else:
-                    actual = actual.siguiente
-            if actual != None:
-                return actual.siguiente
-            else:
+    def contains(self, nombre):
+            if self.head == None:
                 return None
+            actual = self.head
+            inicio = True
+            while inicio or actual != self.head:
+                inicio = False
+                if actual.value.nombre == nombre:
+                    return actual.id
+                actual = actual.siguiente
+            return None
+    
     def __str__(self):
         string = "["
         if self.head != None:
