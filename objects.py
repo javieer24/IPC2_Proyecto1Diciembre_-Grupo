@@ -13,21 +13,28 @@ class ListaDoble:
         self.length = 0
         self.cabeza = None
         self.cola = None
+    
+    def buscar(self, nombre):
+        actual = self.cabeza
+        while actual:
+            if actual.value.nombre == nombre:
+                return True
+            actual = actual.siguiente
+        return False
 
     def append(self, value):
         nuevo = Nodo(value, self.length)
-        if self.cabeza is None:
+        if self.cabeza == None:
             self.cabeza = nuevo
             self.cola = self.cabeza
         else:
             actual = self.cola
             nuevo.anterior = actual
-            actual.siguiente = nuevo
             self.cola = nuevo
+            actual.siguiente = self.cola
         self.length += 1
-
     def getById(self, id):
-        if self.cabeza is None:
+        if self.cabeza == None:
             return "No hay cabeza"
         else:
             if id < 0 or id >= self.length:
@@ -37,41 +44,31 @@ class ListaDoble:
                 while actual.id != id:
                     actual = actual.siguiente
                 return actual.value
-
     def contains(self, nombre):
-        actual = self.cabeza
-        while actual is not None:
-            if actual.value.nombre == nombre:
-                return actual.id
-            actual = actual.siguiente
-        return None
-
+            if self.head == None:
+                return None
+            actual = self.head
+            inicio = True
+            while inicio or actual != self.head:
+                inicio = False
+                if actual.value.nombre == nombre:
+                    return actual.id
+                actual = actual.siguiente
+            return None
+        
     def __str__(self):
-        if self.cabeza is None:
+        if self.cabeza == None:
             return "[]"
         else:
             string = "["
             actual = self.cabeza
-            while actual is not None:
-                string += "{},".format(actual) if actual.siguiente else "{}]".format(actual)
+            while actual != None:
+                if actual.siguiente == None:
+                    string += "{}]".format(actual)
+                else:
+                    string += "{},".format(actual)
                 actual = actual.siguiente
             return string
-
-    def get_nombres(self):
-        nombres = []
-        actual = self.cabeza
-        while actual is not None:
-            nombres.append(actual.value.nombre)  # Asumiendo que cada nodo tiene un atributo 'nombre'
-            actual = actual.siguiente
-        return nombres
-    
-    def __init__(self):
-            self.length = 0
-            self.cabeza = None
-            self.cola = None    
-    
-    def __len__(self):
-        return self.length
     
     def __iter__(self):
         actual = self.cabeza
@@ -190,47 +187,50 @@ rankdir = LR;\n"""
 
             string += '\t\t\t}\n'
         string += "\t}\n"
-        # Hacia delante
+        #Hacia delante
         for i in range(self.listaArtistas.length):
             artista = self.listaArtistas.getById(i)
+            if i+1 == self.listaArtistas.length:
+                string += '"{}"->"NoneR{}"[style = dashed];\n'.format(artista.nombre, i+1)
+            else:
+                siguiente = self.listaArtistas.getById(i+1)
+                string += '"{}"->"{}";\n'.format(artista.nombre, siguiente.nombre)
             for j in range(artista.listaAlbumes.length):
                 album = artista.listaAlbumes.getById(j)
+                if j+1 == artista.listaAlbumes.length:
+                    string += '"{}"->"NoneR{}{}"[style = dashed];\n'.format(album.nombre,i,j)
+                else:
+                    siguiente = artista.listaAlbumes.getById(j+1)
+                    string += '"{}"->"{}";\n'.format(album.nombre, siguiente.nombre)
                 for k in range(album.listaCanciones.length):
                     cancion = album.listaCanciones.getById(k)
-
-                    # Conexiones hacia adelante
-                    if i + 1 < self.listaArtistas.length:
-                        siguiente_artista = self.listaArtistas.getById(i + 1)
-                        string += '"{}"->"{}";\n'.format(artista.nombre, siguiente_artista.nombre)
-
-                    if j + 1 < artista.listaAlbumes.length:
-                        siguiente_album = artista.listaAlbumes.getById(j + 1)
-                        string += '"{}"->"{}";\n'.format(album.nombre, siguiente_album.nombre)
-
-                    if k + 1 < album.listaCanciones.length:
-                        siguiente_cancion = album.listaCanciones.getById(k + 1)
-                        string += '"{}"->"{}";\n'.format(cancion.nombre, siguiente_cancion.nombre)
-
-        # Hacia atras
-        for i in range(self.listaArtistas.length - 1, 0, -1):
+                    if k+1 == album.listaCanciones.length:
+                        string += '"{}"->"NoneR{}{}{}"[style = dashed];\n'.format(cancion.nombre,i,j,k)
+                    else:
+                        siguiente = album.listaCanciones.getById(k+1)
+                        string += '"{}"->"{}";\n'.format(cancion.nombre, siguiente.nombre)
+        #Hacia atras
+        for i in range(self.listaArtistas.length-1,-1,-1):
             artista = self.listaArtistas.getById(i)
-            for j in range(artista.listaAlbumes.length - 1, 0, -1):
+            if i-1 == -1:
+                string += '"{}"->"NoneL{}"[style = dashed];\n'.format(artista.nombre,i)
+            else:
+                anterior = self.listaArtistas.getById(i-1)
+                string += '"{}"->"{}";\n'.format(artista.nombre, anterior.nombre)
+            for j in range(artista.listaAlbumes.length-1,-1,-1):
                 album = artista.listaAlbumes.getById(j)
-                for k in range(album.listaCanciones.length - 1, 0, -1):
+                if j-1 == -1:
+                    string += '"{}"->"NoneL{}{}"[style = dashed];\n'.format(album.nombre,j,i)
+                else:
+                    anterior = artista.listaAlbumes.getById(j-1)
+                    string += '"{}"->"{};"\n'.format(album.nombre, anterior.nombre)
+                for k in range(album.listaCanciones.length-1,-1,-1):
                     cancion = album.listaCanciones.getById(k)
-
-                    # Conexiones hacia atras
-                    if i - 1 >= 0:
-                        anterior_artista = self.listaArtistas.getById(i - 1)
-                        string += '"{}"->"{}";\n'.format(artista.nombre, anterior_artista.nombre)
-
-                    if j - 1 >= 0:
-                        anterior_album = artista.listaAlbumes.getById(j - 1)
-                        string += '"{}"->"{}";\n'.format(album.nombre, anterior_album.nombre)
-
-                    if k - 1 >= 0:
-                        anterior_cancion = album.listaCanciones.getById(k - 1)
-                        string += '"{}"->"{}";\n'.format(cancion.nombre, anterior_cancion.nombre)
+                    if k-1 == -1:
+                        string += '"{}"->"NoneL{}{}{}"[style = dashed];\n'.format(cancion.nombre,k,j,i)
+                    else:
+                        anterior = album.listaCanciones.getById(k-1)
+                        string += '"{}"->"{}";\n'.format(cancion.nombre, anterior.nombre)
         string += "\n}"
         file = open("library.dot", "w")
         file.write(string)
@@ -301,18 +301,20 @@ class ListaCircular:
                     break
                 actual = actual.siguiente
             return actual.value
-    def contains(self, nombre):
-            if self.head == None:
-                return None
-            actual = self.head
-            inicio = True
-            while inicio or actual != self.head:
-                inicio = False
-                if actual.value.nombre == nombre:
-                    return actual.id
-                actual = actual.siguiente
+    def contains(self, object):
+        if self.head == None:
             return None
-    
+        else:
+            actual = self.head
+            while actual.siguiente != self.head:
+                if actual == object:
+                    break
+                else:
+                    actual = actual.siguiente
+            if actual != None:
+                return actual.siguiente
+            else:
+                return None
     def __str__(self):
         string = "["
         if self.head != None:

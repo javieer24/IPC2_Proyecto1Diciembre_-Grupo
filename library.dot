@@ -1,0 +1,72 @@
+digraph G {
+layout = dot;
+labelloc = "t";
+edge [weigth = 1000];
+rankdir = LR;
+	subgraph artistas {
+	rankdir = LR;
+		"Cartoon"[fillcolor = beige style = "filled"];
+			subgraph "albumCartoon"{
+			rankdir = TB;			rank=same;
+				"Cartoon"->"Sencillo"
+				"Sencillo"[fillcolor = aquamarine style = "filled"];
+					subgraph "albumSencillo"{
+					rankdir = LR;
+						"Sencillo"->"Cartoon  Made Me Feel ft Kristel Aaslaid Champion Remix"
+							"Cartoon  Made Me Feel ft Kristel Aaslaid Champion Remix"[fillcolor = deepskyblue style = "filled"];
+							"Cartoon  On  On feat Daniel Levi NCS Release"[fillcolor = deepskyblue style = "filled"];
+					}
+			}
+		"Imagine Dragons"[fillcolor = beige style = "filled"];
+			subgraph "albumImagine Dragons"{
+			rankdir = TB;			rank=same;
+				"Imagine Dragons"->"Sencillo"
+				"Sencillo"[fillcolor = aquamarine style = "filled"];
+					subgraph "albumSencillo"{
+					rankdir = LR;
+						"Sencillo"->"Enemy from the series Arcane League of Legends"
+							"Enemy from the series Arcane League of Legends"[fillcolor = deepskyblue style = "filled"];
+					}
+			}
+		"Healsy"[fillcolor = beige style = "filled"];
+			subgraph "albumHealsy"{
+			rankdir = TB;			rank=same;
+				"Healsy"->"Manic"
+				"Manic"[fillcolor = aquamarine style = "filled"];
+					subgraph "albumManic"{
+					rankdir = LR;
+						"Manic"->"Graveyar"
+							"Graveyar"[fillcolor = deepskyblue style = "filled"];
+							"You should be sad"[fillcolor = deepskyblue style = "filled"];
+					}
+				"Badlands"[fillcolor = aquamarine style = "filled"];
+					subgraph "albumBadlands"{
+					rankdir = LR;
+						"Badlands"->"New Americana"
+							"New Americana"[fillcolor = deepskyblue style = "filled"];
+					}
+			}
+		"PXNDX"[fillcolor = beige style = "filled"];
+			subgraph "albumPXNDX"{
+			rankdir = TB;			rank=same;
+				"PXNDX"->"Poetics"
+				"Poetics"[fillcolor = aquamarine style = "filled"];
+					subgraph "albumPoetics"{
+					rankdir = LR;
+						"Poetics"->"Solo a terceros"
+							"Solo a terceros"[fillcolor = deepskyblue style = "filled"];
+					}
+			}
+	}
+"Cartoon"->"Imagine Dragons";
+"Cartoon  Made Me Feel ft Kristel Aaslaid Champion Remix"->"Cartoon  On  On feat Daniel Levi NCS Release";
+"Cartoon"->"Imagine Dragons";
+"Imagine Dragons"->"Healsy";
+"Healsy"->"PXNDX";
+"Manic"->"Badlands";
+"Graveyar"->"You should be sad";
+"Healsy"->"PXNDX";
+"Manic"->"Badlands";
+"Healsy"->"PXNDX";
+
+}
