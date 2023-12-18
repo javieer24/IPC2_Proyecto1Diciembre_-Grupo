@@ -38,7 +38,7 @@ La aplicación de escritorio IPCmusic consiste en un reproductor de música el c
 - [🗂 Recursos](#-recursos)
 - [📟 Instalación](#-instalación)
 - [⚡ Inicio Rápido](#-inicio-rápido)
-- [💻 Interfaz de Usuario y Funcionalidades](#-interfaz-de-usuario-y-funcionalidades)
+- [💻 Ejemplo de Interfaz de Usuario MP3music](#-ejemplo-de-interfaz-deusuario-mp3music)
 
 - [📖 Documentación](#-documentación)
 
@@ -48,10 +48,6 @@ La aplicación de escritorio IPCmusic consiste en un reproductor de música el c
 ## ⚒ Requerimientos
 <ul>
     <li>Sistemas Opreativos</li>
-    <ul>
-       <li><a href="https://github.com/javieer24/IPC2_Proyecto1Diciembre_-Grupo/blob/main/Documentaci%C3%B3n/FtoArticuloEnsayo-IPC2-lab.docx" target="_blank">:point_right:Manual Técnico</a></li>
-       <li><a href="https://github.com/javieer24/IPC2_Proyecto1Diciembre_-Grupo/blob/main/Documentaci%C3%B3n/Proyecto1IPC2%20-%20Diciembre.pdf" target="_blank">:point_right:Manual de Usuario</a></li>
-    </ul>
     <li>Python 3.11.5 o Superior</li>
     <li>Graphviz 0.20 o superior</li>
     <li>PySide6 6.5.2 o superior</li>
@@ -66,7 +62,7 @@ La aplicación de escritorio IPCmusic consiste en un reproductor de música el c
   <li><a href="https://pypi.org/project/PySide6/6.5.2/">PySide6 6.5.2 o superiorr</a></li>
   <li><a href="https://pypi.org/project/graphviz/">Graphviz 0.20 o superior</a></li>
   <li><a href="https://pypi.org/project/Pillow/">Pillow 10.1.0</a></li>
-  <li><a href="[hhttps://www.pygame.org/wiki/GettingStarted/](https://www.pygame.org/download.shtml)">Pygame</a></li>
+   <li><a href="[hhttps://www.pygame.org/wiki/GettingStarted/](https://www.pygame.org/download.shtml)">Pygame</a></li>
 </ul>
 
 ## 📟 Instalación
@@ -75,7 +71,7 @@ Descargue el código o bien clone el repositorio en una carpeta.
 Si se opta por la clonación se hace con la siguiente linea de código en terminal (Antes de ejecutar el codigo asegurese de estar en la carpeta donde lo quiere descargar)
 
 ```bash
-git clone https://github.com/javieer24/LFP_S2_2023_Proyecto2_202100081.git
+git clone https://github.com/javieer24/IPC2_Proyecto1Diciembre_-Grupo8.git
 ```
 
 ## ⚡ Inicio Rápido
@@ -87,16 +83,19 @@ python main.py
 
 Luego se ejecutará la aplicación, abriendo una ventana
 
-## 💻 Interfaz de Usuario y Funcionalidades
-Al ejecutar el programa se abrirá una ventana, en la cual se elige las opciones requeridas
+## 💻 Ejemplo de Interfaz de Usuario MP3music
+
 <p align="center">
     <img src="IMG\cap1.png">
 </p>
 
-La aplicación se divide en 4 secciones, las cuales tienen una funcionalidad especifica.
-
-### Inicio
-
 ## 📖 Documentación
-Para comprender de mejor manera el funcionamiento del sistema puede, 
-<a href="https://github.com/javieer24/IPC2_Proyecto1Diciembre_-Grupo/tree/main/Documentaci%C3%B3n">Ver la documentación</a>
+Para comprender de mejor manera el funcionamiento del sistema puede dirigirse a lo siguiente:
+    <ul>
+       <li><a href="https://github.com/javieer24/IPC2_Proyecto1Diciembre_-Grupo8/blob/main/Documentaci%C3%B3n/Proyecto1IPC2%20-%20Diciembre.pdf" target="_blank">:point_right:Planteamiento de proyecto</a></li>
+        <li><a href="https://github.com/javieer24/IPC2_Proyecto1Diciembre_-Grupo8/blob/main/Documentaci%C3%B3n/Documentacion.pdf" target="_blank">:point_right:Documentacion Ensayo</a></li>
+       <li><a href="https://github.com/javieer24/IPC2_Proyecto1Diciembre_-Grupo/blob/main/Documentaci%C3%B3n/FtoArticuloEnsayo-IPC2-lab.docx" target="_blank">:point_right:Manual Técnico</a></li>
+       <li><a href="https://github.com/javieer24/IPC2_Proyecto1Diciembre_-Grupo/blob/main/Documentaci%C3%B3n/Proyecto1IPC2%20-%20Diciembre.pdf" target="_blank">:point_right:Manual de Usuario</a></li>
+       <li><a href="" target="_blank">:point_right:UML</a></li>
+    </ul>
+
