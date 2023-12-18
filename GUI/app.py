@@ -4,7 +4,7 @@ from tkinter import *
 from tkinter.constants import *
 from method import *
 from objects.objects import *
-from objects.objects import ListaDoble, ListaCircular
+from objects.objects import ListaDoble, ListaCircular, Pila
 from objects import *
 from thread.thread import *
 from tkinter import Image, Tk, Button, Label, Label, ttk, filedialog, messagebox, simpledialog
@@ -49,10 +49,10 @@ class App(Tk):
 
                     cancion = Cancion(nombre_cancion, album, artista, ruta, imagen)
                     nuevaLista.append(cancion)
-                    print(f"Añadiendo canción: {nombre_cancion}")  # Depuración
+                    print(f"Añadiendo canción: {nombre_cancion}, Artista: {artista}, Album: {album}")  # Depuración 
 
                 self.listaPlayList.append(nuevaLista)
-                print(f"Lista añadida: {nuevaLista}")  # Depuración
+                print(f"Lista añadida: {nuevaLista}")  # Depuración 
 
         except Exception as e:
             print("Error al cargar las listas de reproducción:", e)
@@ -305,6 +305,7 @@ class App(Tk):
         self.labelArtista.config(text = "Artista: {}".format(artista))
     
     def reproducir(self, cancion):
+        self.setInfo(cancion.nombre, cancion.album, cancion.artista)
         cancion.incrementar_reproducciones()
         if self.threadPlay != None:
             self.threadPlay.raise_exception()
@@ -393,11 +394,15 @@ class App(Tk):
                 # Crear un nuevo archivo XML con el nombre de la lista
                 self.crear_archivo_xml_para_lista(nombre_lista + ".xml", nombre_lista)
 
+                # Almacenar el nombre de la última lista creada
+                self.ultimaListaCreada = nombre_lista
+
                 # Actualizar el combobox de listas después de crear la nueva lista
                 self.actualizar_lista_combobox()
                 self.cbbListas.current(len(self.listaPlayList) - 1)
             else:
                 messagebox.showwarning("Error", "Ese nombre ya existe!")
+
 
     def crear_archivo_xml_para_lista(self, nombre_archivo, nombre_lista):
         archivo_xml = os.path.join("MisListas", nombre_archivo)
@@ -436,6 +441,36 @@ class App(Tk):
             else:
                 self.cancionSeleccionada = None
                 print("Canción no encontrada en la lista.")
+
+    def generar_reporte_html(self):
+        # Obtener el nombre de la última lista creada
+        nombre_lista = self.ultimaListaCreada if hasattr(self, 'ultimaListaCreada') else 'Sin Nombre'
+
+        # Inicializar la Pila
+        pila_canciones = Pila()
+
+        # Agregar canciones a la Pila
+        for i in range(self.songslist.length):
+            cancion = self.songslist.getById(i)
+            pila_canciones.push(cancion)
+
+        # Crear el archivo HTML
+        with open("reporte_canciones.html", "w") as file:
+            file.write("<html><head><title>Reporte de Canciones</title>")
+            file.write("<style>table { width: 100%; border-collapse: collapse; }")
+            file.write("th, td { border: 1px solid black; padding: 8px; text-align: left; }")
+            file.write("th { background-color: #f2f2f2; }</style></head><body>")
+            file.write(f"<h1>Canciones Más Reproducidas - Lista: {nombre_lista}</h1>")
+            file.write("<table><tr><th>Canción</th><th>Artista</th><th>Álbum</th><th>Reproducciones</th></tr>")
+
+            # Extraer elementos de la pila y agregarlos al reporte HTML
+            while not pila_canciones.is_empty():
+                cancion = pila_canciones.pop()
+                file.write(f"<tr><td>{cancion.nombre}</td><td>{cancion.artista}</td><td>{cancion.album}</td><td>{cancion.vecesReproducida}</td></tr>")
+
+            file.write("</table></body></html>")
+            print("Reporte HTML generado en 'reporte_canciones.html'")
+
     
     def __init__(self):
         Tk.__init__(self)
@@ -526,13 +561,16 @@ class App(Tk):
 
         #Botón para reportes
         btn_reportes = Button(self.ventana, text = "Reportes", command = self.reportes)
-        btn_reportes.place(x=70, y=70, width = 85, height = 25)
+        btn_reportes.place(x=75, y=70, width = 85, height = 25)
 
+        # REPORTE HTML
+        btn_generar_reporte = Button(self.ventana, text = "Generar Reporte HTML", command = self.generar_reporte_html)
+        btn_generar_reporte.place(x=170, y=70, width = 155, height = 25)
 
         btn_crear_lista = Button(frame, text="Crear Lista", command=self.crear_listaReproduccion)
         btn_crear_lista.place(x=840, y=218)
         
-        btn_crear_lista = Button(frame, text="Agregar Lsita", command=self.agregar_cancion_a_lista)
+        btn_crear_lista = Button(frame, text="Agregar Lista", command=self.agregar_cancion_a_lista)
         btn_crear_lista.place(x=834, y=276)
         
         btn_reproducir = Button(frame, text="Reproducir", command=lambda: self.reproducirSeleccionada())
@@ -584,9 +622,6 @@ class App(Tk):
         #Boton para limpiar la lista de reproducción
         btnDelete = Button(frame, text = "Clear List", bg="#fff", bd=0, command= self.addPlayList)
         btnDelete.place(x = 845, y = 189)
-
-
-        
         
         #COMBOBOX
         self.cbbArtistas = ttk.Combobox(self.ventana, state = "readonly")
