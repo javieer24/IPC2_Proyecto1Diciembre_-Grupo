@@ -86,7 +86,7 @@ Luego se ejecutará la aplicación, abriendo una ventana
 ## 💻 Ejemplo de Interfaz de Usuario MP3music
 
 <p align="center">
-    <img src="IMG\cap1.png">
+    <img src="IMG\inicio.png">
 </p>
 
 ## 📖 Documentación

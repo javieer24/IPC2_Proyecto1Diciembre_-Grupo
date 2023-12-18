@@ -560,7 +560,7 @@ class App(Tk):
         btn_load.place(x=22, y=55)
 
         #Botón para reportes
-        btn_reportes = Button(self.ventana, text = "Reportes", command = self.reportes)
+        btn_reportes = Button(self.ventana, text = "Graphviz", command = self.reportes)
         btn_reportes.place(x=75, y=70, width = 85, height = 25)
 
         # REPORTE HTML
@@ -603,13 +603,6 @@ class App(Tk):
         img_previous = PhotoImage(file="iconos//Previous.png")
         btn_previous = Button(frame, image=img_previous, bg="#fff", bd=0, command=self.aBack)
         btn_previous.place(x=115, y=370)
-
-
-        btnnext = Button(frame, text = "Next", bg="#fff", bd=0, command = self.aNext)
-        btnnext.place(x = 215, y = 415)
-
-        btnback = Button(frame, text = "Back", bg="#fff", bd=0, command = self.aBack)
-        btnback.place(x = 115, y = 415)
         
         #Añade canciones deseadas a la playlist
         btnAdd = Button(frame, text = "Add To List", bg="#fff", bd=0, command = self.addToList)
