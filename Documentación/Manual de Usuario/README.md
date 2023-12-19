@@ -36,7 +36,7 @@ Cuenta con interfaz sencilla y minimalista, que le permite al usuario ciertas fu
 
 [Menu principal]
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\inicio.png">
+    <img src="IMG\inicio.png">
 </p>  
 
 Además de las funcionalidades básicas, MP3music cuenta con un área de texto en la que el usuario puede visualizar el contenido del archivo abierto. Esto permite un uso más intuitivo y sencillo del manejo del archivo, ya que el usuario puede verificar el contenido del archivo sin necesidad de abrirlo en un editor de texto externo.
@@ -44,130 +44,130 @@ Además de las funcionalidades básicas, MP3music cuenta con un área de texto e
 ## Cargar XML
 [cargar archivo xml]
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\load.png">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\load1.png">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\load2.png">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\Archivocargadoxml.png">
+    <img src="IMG\load.png">
+    <img src="IMG\load1.png">
+    <img src="IMG\load2.png">
+    <img src="IMG\Archivocargadoxml.png">
 </p>  
 Al presionar el boton abrir, se desplega un cuadro de dialogo, en el que el usuario podra seleccionar cualquier tipo de archivo, unicamente con la restriccion detallada, que el tipo de archivo que acepta el programa es unicamente con extension "XML". Cualquier otro tipo de archivo, no se podra cargar en el sistema.
 
 ## Normal
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\normal.png">
+    <img src="IMG\normal.png">
 </p>  
 
 ## Play
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\Archivocargadoxml.png">
+    <img src="IMG\Archivocargadoxml.png">
 </p>
 Estando en inicio y cargado el xml que seleccionamos nos muestra los datos del xml cargado por artista, album y lista pero sin obtener el img o mp3, para obtenerlo damos play a la cancion que queremos escuchar. 
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\play.png">
+    <img src="IMG\play.png">
 </p>
 Esto nos mostrara la cancion que seleccionamos con su img y mp3, ademas de que nos mostrara la informacion de la cancion que seleccionamos. 
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\PlaySong.png">
+    <img src="IMG\PlaySong.png">
 </p>  
 
 ## Play/Pausa
 El boton de play/pausa nos permite pausar la cancion que estamos escuchando y reanudarla cuando queramos.
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\Play_stop.png">
+    <img src="IMG\Play_stop.png">
 </p>  
 
 ## Siguiente
 El boton de siguiente nos permite pasar a la siguiente cancion de la lista de reproduccion.
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\nex.png">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\Nextmenu.png">
+    <img src="IMG\nex.png">
+    <img src="IMG\Nextmenu.png">
 </p>
 Otro ejemplo con otra Playlist
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\playlistseleccion.png">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\next.png">
+    <img src="IMG\playlistseleccion.png">
+    <img src="IMG\next.png">
 </p>  
 
 ## Anterior
 El boton de anterior nos permite pasar a la cancion anterior de la lista de reproduccion.
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\back.png">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\Playsong.png">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\back1.png">
+    <img src="IMG\back.png">
+    <img src="IMG\Playsong.png">
+    <img src="IMG\back1.png">
 </p>  
 
 ## Aleatorio
 El boton de aleatorio nos permite reproducir la lista de reproduccion en modo aleatorio.
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\random.png">
+    <img src="IMG\random.png">
 </p>  
 
 ## Crear Lista
 El boton de crear lista nos permite crear una lista de reproduccion nueva a partir de la lista de reproduccion actual.
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\btncrear.png">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\crearlista.png">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\namelista.png">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\listashow.png">
+    <img src="IMG\btncrear.png">
+    <img src="IMG\crearlista.png">
+    <img src="IMG\namelista.png">
+    <img src="IMG\listashow.png">
 </p>  
 
 ## Agregar Lista
 El boton de agregar lista nos permite agregar una lista de reproduccion nueva.
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\addli.png">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\lista.png">
-    <img src= "C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\list2.png">
+    <img src="IMG\addli.png">
+    <img src="IMG\lista.png">
+    <img src= "IMG\list2.png">
 </p>  
 
 ## Add To List
 El boton de add to list nos permite agregar canciones a una lista de reproduccion existente.
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\listadd.png">
+    <img src="IMG\listadd.png">
 </p>  
 
 ## Save List
 El boton de save list nos permite guardar la lista de reproduccion actual.
 Por ejemplo usando los botones de crear lista y agregar lista, podemos crear una lista de reproduccion nueva y agregarle canciones. viendo se asi
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\save1.png">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\save2.png">
+    <img src="IMG\save1.png">
+    <img src="IMG\save2.png">
 </p>  
 Ok ahora dando al boton de save list
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\save.png">
+    <img src="IMG\save.png">
 </p>  
 y asi quedaria al darle el xmly se guardaria en la Carpeta "MisListas"
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\save4.png">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\xmlsave.png">
+    <img src="IMG\save4.png">
+    <img src="IMG\xmlsave.png">
 </p>  
 En caso de que exista una lista con el mismo nombre lanzara el siguiente mensaje
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\save3.png">
+    <img src="save3.png">
 </p>  
 
 ## Clear List
 El boton de clear list nos permite eliminar todas las canciones de una lista de reproduccion.
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\btnclear.png">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\btnclear1.png">
+    <img src="IMG\btnclear.png">
+    <img src="IMG\btnclear1.png">
 </p> 
 Asi quedaria la lista vacía sin datos:
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\clearlist.png">
+    <img src="IMG\clearlist.png">
 </p>  
 
 ## Reproducir
 El boton de reproducir nos permite reproducir la lista de reproduccion seleccionada.
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\btnreproducir.png">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\playlistseleccion.png">
+    <img src="IMG\btnreproducir.png">
+    <img src="IMG\playlistseleccion.png">
 </p>  
 
 ## Reproducir Lista
 El boton de reproducir lista nos permite reproducir la lista de reproduccion seleccionada.
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\btnreproducirlist.png">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\playlistseleccion.png">
+    <img src="IMG\btnreproducirlist.png">
+    <img src="IMG\playlistseleccion.png">
 </p>  
 
 ## Combobox  Artista
@@ -179,48 +179,48 @@ Nos permite seleccionar el artista que queremos escuchar.
 ## Combobox  Album
 Nos permite seleccionar el album que queremos escuchar en dado caso sea in single o si exista un album.
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\album.png">
+    <img src="IMG\album.png">
 </p>  
 
 ## Combobox  Lista
 Nos permite seleccionar la lista que queremos escuchar.
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\Listaplaylistcombo.png">
+    <img src="IMG\Listaplaylistcombo.png">
 </p>  
 
 ## Graphviz
 El boton de graphviz nos permite exportar la lista de reproduccion actual a un archivo graphviz.dot y un png con la imagen de la lista de reproduccion.
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\graphvizreport.png">
+    <img src="IMG\graphvizreport.png">
 </p>
 Crea lo siguiente:
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\library.dot.png">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\librarycode.png">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\GRaphdotpng.png">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\grapvhiz.png">
+    <img src="IMG\library.dot.png">
+    <img src="IMG\librarycode.png">
+    <img src="IMG\GRaphdotpng.png">
+    <img src="IMG\grapvhiz.png">
 </p>   
 
 ## Generar Reporte HTML
 El boton de generar reporte html nos permite exportar la lista de reproduccion actual a un archivo html junto con el numero de veces que se escucho una canción.
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\btnhtml.png">
+    <img src="IMG\btnhtml.png">
 </p> 
 Crea lo siguiente:
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\reports.png">
+    <img src="IMG\reports.png">
 </p>
 En la ruta de nuestra carpeta:
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\htmlurl.png">
+    <img src="IMG\htmlurl.png">
 </p>  
 Viendo asi el reporte html que se genero queda de la siguiente manera:
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\Htmlreport.png">
+    <img src="IMG\Htmlreport.png">
 
 ## Salir
 El boton de salir nos permite salir de la aplicacion mostrando un mensaje si deseamos salir.
 <p align="center">
-    <img src="C:\Users\javie\Escritorio\IPC2_Proyecto1Diciembre_-Grupo8\IMG\exit.png">
+    <img src="IMG\exit.png">
 </p>  
 Gracias por prestar atencion a nuestro manual de usuario, esperamos que disfrute de la aplicacion y que sea de su agrado.
