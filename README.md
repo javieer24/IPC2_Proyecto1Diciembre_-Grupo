@@ -1,5 +1,5 @@
 # IPC2_Proyecto1Diciembre_#Grupo
-<h1 align="center">Proyecto 2</h1>
+<h1 align="center">Proyecto 1</h1>
 <h2 align="center">Grupo #8</h2>
 <p align="center">IPCmusic</p>
 
